@@ -1,0 +1,34 @@
+<html>
+  <head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    
+    {{ content_for_header }}
+
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+    {{ 'adaptiv.css' | asset_url | stylesheet_tag }}
+    {{ 'twentytwenty.css' | asset_url | stylesheet_tag }}
+    {{ 'animate.min.css' | asset_url | stylesheet_tag }}
+    {{ 'mystyle.css' | asset_url | stylesheet_tag }}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body id="startpage">
+    {% render 'header' %}
+    
+    {{ content_for_layout }}
+
+    {% render 'footer' %}
+    {{ 'jquery.min.js' | asset_url | script_tag }}
+    {{ 'swiper.min.js' | asset_url | script_tag }}
+    {{ 'jquery.fancybox.min.js' | asset_url | script_tag }}
+    {{ 'wow.min.js' | asset_url | script_tag }}
+    {{ 'jquery.twentytwenty.js' | asset_url | script_tag }}
+    {{ 'jquery.event.move.js' | asset_url | script_tag }}
+    {{ 'main.js' | asset_url | script_tag }}
+    {{ 'myscript.js' | asset_url | script_tag }}
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<section id="related">
+  <div class="container">
+    <div class="bt">{{ section.settings.title }}</div>
+    <div class="grid">
+      {% for product in collections.all.products %}   
+        {% if product.tags contains "related" %} 
+          <div class="product__item">
+            <div class="image"><img src="{{ product.featured_image | image_url: 'large' }}" alt="{{ product.title }}"></div>
+            <div class="title" style="height: 60px;">{{ product.title }}</div>
+            <p>{{ section.settings.content }}</p>
+            <a href="{{ product.url }}" class="btn btn-orange">View Product</a>
+          </div> 
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Related Products"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Product Description",
+      "default": "Suspendisse ac dapibus tortor integer suscipit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

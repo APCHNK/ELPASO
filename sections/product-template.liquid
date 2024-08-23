@@ -1,0 +1,294 @@
+<section id="breadcrumbs">
+  <div class="container">
+    <div class="flex">
+      <a href="#">Home</a>
+      <span class="sep"></span>
+      <a href="#">Products</a>
+      <span class="sep"></span>
+      {% for col in product.collections limit: 1 %}<a href="{{ col.url }}">{{ col.title }}</a>{% endfor %}
+      <span class="sep"></span>
+      <span>{{ product.title }}</span>
+    </div>
+  </div>
+</section>
+
+<section id="product__page">
+  <div class="container flex">
+    <div class="gallery">
+      <div class="main__image"><a href="{{ product.featured_image |  image_url }}" data-fancybox ><img src="{{ product.featured_image |  image_url }}" alt="title"></a></div>
+      <div class="thumbnails grid">
+        {% for media in product.media %}
+          {% if media.media_type == 'video' %}
+
+            <a href="https:{{ media.sources[1].url }}" data-fancybox="gallery" data-type="iframe">{{ media | video_tag }}</a>
+
+          {% else %}
+
+            <a href="{{ media |  image_url }}" data-fancybox="gallery" ><img src="{{ media | image_url }}" alt="title"></a>
+          
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="data">
+      <h1>{{ product.title }}</h1>
+      <div class="description">
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="tth">
+        {{ product.metafields.custom.specifications | metafield_tag }}
+      </div>
+     
+        <div class="prices">
+        <div class="compare-at">{{ product.compare_at_price | money }}</div>
+        <div class="price" style="margin-bottom: 30px;">{{ product.price | money }}</div>
+      </div>
+      <style>
+        .prices{
+          display: flex;
+          
+          gap: 7px;
+        }
+        #product__page .data .compare-at{
+          font-weight: 600;
+          line-height: 30px;
+          font-size: 24px;
+          font-family: var(--second-family);
+          color: #00000075;
+          text-decoration: line-through;
+        }
+      </style>
+     
+      
+
+
+
+
+      
+      {% if product.variants.size > 1 %}
+        <div class="variants">
+          <select class="variant-select">
+            <option value="{{ product.first_available_variant.id }}" data-price="{{ product.first_available_variant.price | money }}">
+              Choose an Size
+              </option>
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">
+                {{ variant.title }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+      
+
+
+
+      <div class="inn">
+        <div class="tocart flex">
+          <div class="count">
+            <input class="product-count" type="text" name="count" value="1">
+            <button class="btn btn-minus"></button>
+            <button class="btn btn-plus"></button>
+          </div>
+          <button class="btn btn-orange btn-cart" data-product="{{ product.first_available_variant.id }}">Add to Cart</button>
+          <div class="favorites">
+            <form  method="post" enctype="multipart/form-data" class="product-form">
+                <input type="hidden" class="tocart" name="id" value="" />
+                <input type="hidden" name="quantity" value="1" />
+                <button  type="submit" class="btn btn-favorites">
+                  <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.25 4.16824C19.6688 4.16824 17.4088 5.27824 16 7.15449C14.5912 5.27824 12.3313 4.16824 9.75 4.16824C7.69528 4.17056 5.72539 4.98782 4.27248 6.44072C2.81958 7.89363 2.00232 9.86353 2 11.9182C2 20.6682 14.9738 27.7507 15.5262 28.0432C15.6719 28.1216 15.8346 28.1626 16 28.1626C16.1654 28.1626 16.3281 28.1216 16.4737 28.0432C17.0262 27.7507 30 20.6682 30 11.9182C29.9977 9.86353 29.1804 7.89363 27.7275 6.44072C26.2746 4.98782 24.3047 4.17056 22.25 4.16824ZM16 26.0182C13.7175 24.6882 4 18.6295 4 11.9182C4.00198 10.3939 4.60842 8.93248 5.68633 7.85457C6.76423 6.77667 8.22561 6.17023 9.75 6.16824C12.1812 6.16824 14.2225 7.46324 15.075 9.54324C15.1503 9.72665 15.2785 9.88353 15.4432 9.99393C15.6079 10.1043 15.8017 10.1633 16 10.1633C16.1983 10.1633 16.3921 10.1043 16.5568 9.99393C16.7215 9.88353 16.8497 9.72665 16.925 9.54324C17.7775 7.45949 19.8188 6.16824 22.25 6.16824C23.7744 6.17023 25.2358 6.77667 26.3137 7.85457C27.3916 8.93248 27.998 10.3939 28 11.9182C28 18.6195 18.28 24.687 16 26.0182Z" fill="#121312"/></svg>
+                </button>
+            </form>
+            
+          </div>
+        </div>
+
+        <div class="product__pay flex">
+          <img src="{{ 'pay1.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay2.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay3.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay4.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay5.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay6.svg' | asset_url}}" alt="title">
+          <img src="{{ 'pay7.svg' | asset_url}}" alt="title">
+          <span class="note">Guaranteed Safe & Secure</span>
+        </div>
+      </div>
+
+      <div class="product__delivery">
+        <p>Great Reasons to Buy From Us:</p>
+        <div class="flex">
+          <div class="item">
+            <img src="{{ 'delivery1.svg' | asset_url}}" alt="title">
+            <span>Fast Local Delivery</span>
+          </div>
+          <div class="item">
+            <img src="{{ 'delivery2.svg' | asset_url}}" alt="title">
+            <span>Premium Quality</span>
+          </div>
+          <div class="item">
+            <img src="{{ 'delivery3.svg' | asset_url}}" alt="title">
+            <span>Affordable Price</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+  #breadcrumbs{padding: 215px 0 60px;}
+  footer{padding-top: 60px;}
+  header{background: linear-gradient(68.93deg, rgba(127, 190, 36, 0.2) -3.47%, rgba(255, 255, 255, 0) 38.97%);}
+</style>  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const inputField = document.querySelector('.count input[name="count"]');
+    const btnMinus = document.querySelector('.count .btn-minus');
+    const btnPlus = document.querySelector('.count .btn-plus');
+
+    function updateValue(newValue) {
+      inputField.value = newValue;
+      inputField.setAttribute('value', newValue);
+    }
+
+    btnMinus.addEventListener('click', function(e) {
+      e.preventDefault();
+      let currentValue = parseInt(inputField.value, 10);
+      if (!isNaN(currentValue) && currentValue > 1) {
+        updateValue(currentValue - 1);
+      }
+    });
+
+    btnPlus.addEventListener('click', function(e) {
+      e.preventDefault();
+      let currentValue = parseInt(inputField.value, 10);
+      if (!isNaN(currentValue)) {
+        updateValue(currentValue + 1);
+      }
+    });
+
+    inputField.addEventListener('input', function() {
+      let value = parseInt(inputField.value, 10);
+      if (isNaN(value) || value < 1) {
+        updateValue(1);
+      } else {
+        updateValue(value);
+      }
+    });
+  });
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const selectVariant = document.querySelector('.variant-select');
+  const priceElement = document.querySelector('.price');
+  const buttonCart = document.querySelector('.btn-cart');
+
+  // Устанавливаем начальное значение активного варианта
+  selectVariant.options[0].selected = true;
+  updateVariant(selectVariant.value);
+
+  // Слушаем изменения выбора варианта
+  selectVariant.addEventListener('change', function(e) {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const id = selectedOption.value;
+    const priceText = selectedOption.getAttribute('data-price');
+    
+    // Обновляем цену
+    priceElement.textContent = priceText;
+
+    // Устанавливаем атрибут для кнопки добавления в корзину
+    buttonCart.setAttribute('data-product', id);
+  });
+
+  // Функция для обновления данных в зависимости от выбранного варианта
+  function updateVariant(variantId) {
+    const selectedOption = selectVariant.querySelector(`option[value="${variantId}"]`);
+    if (selectedOption) {
+      const priceText = selectedOption.getAttribute('data-price');
+      priceElement.textContent = priceText;
+      buttonCart.setAttribute('data-product', variantId);
+    }
+  }
+});
+
+
+
+
+
+
+
+
+  
+
+  const toCartButton = document.querySelector('.btn-cart')
+  toCartButton.addEventListener('click', (e) => {
+      const productId = e.target.getAttribute('data-product')
+      const quantity = document.querySelector('.product-count').value
+      addProductToCart(productId, quantity);
+  })
+
+  function addProductToCart(product, quantity){
+      let formData = {
+          'items': [{
+          'id': product,
+          'quantity': quantity
+          }]
+      };
+      console.log(formData)
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+      })
+      .then(response => {
+      return response.json();
+      })
+      .then(() => {
+          window.location.href = '/cart';
+      })
+      .catch((error) => {
+      console.error('Error:', error);
+      });
+  }
+</script>
+
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-6e4566c6-2130-4761-abb7-dd9f9f5c483f" data-elfsight-app-lazy></div>
+
+{% schema %}
+    {
+      "name": "Product Template",
+      "settings": [],
+      "blocks": [
+        {
+          "type": "content",
+          "name": "Content Block",
+          "settings": [
+            {
+              "type": "text",
+              "id": "content",
+              "label": "Content"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Default",
+          "category": "Product"
+        }
+      ]
+    }
+    {% endschema %}
+
+    

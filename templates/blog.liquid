@@ -1,0 +1,57 @@
+<section id="promo__page">
+		<div class="container">
+			<h1>El Paso Artificial Grass Supply Blogs</h1>
+			<div class="bt__note">Stay informed and inspired with our blog, where we share expert advice, project highlights, and industry trends to help you make the most of your artificial grass investment.</div>
+		</div>
+	</section>
+
+	<section id="breadcrumbs">
+		<div class="container">
+			<div class="flex">
+				<a href="/">Home</a>
+				<span class="sep"></span>
+				<a href="/pages/about">About</a>
+				<span class="sep"></span>
+				<span>Blog</span>
+			</div>
+		</div>
+	</section>
+
+	<section id="articles">
+		<div class="container">
+			<div class="list__blog flex">
+                {% for article in blogs.news.articles %}
+                    <div class="item">
+                        <div class="image"><a href="{{ article.url }}"><img src="{{ article.image | image_url }}" alt="title"></a></div>
+                        <div class="data">
+                            <div class="title"><a href="{{ article.url }}">{{ article.title }}</a></div>
+                            <div class="excerpt">{{ article.excerpt }}</div>
+                            <a href="{{ article.url }}" class="btn">View Post</a>
+                        </div>
+                    </div>
+                {% endfor %}
+			</div>
+
+			{% comment %} <div class="pagination">
+				<a href="#" class="prev">Prev</a>
+				<span class="current">1</span>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<span>...</span>
+				<a href="#">10</a>
+				<a href="#" class="next">Next</a>
+			</div> {% endcomment %}
+		</div>
+	</section>
+
+	<section id="free__help">
+		<div class="container">
+			<div class="bt">Need Help Choosing An Artificial Grass Solution?</div>
+			<div class="bt__note">El Paso Artificial Grass Supply has you covered! Our knowledgeable team, with years of experience, will walk you through each step to ensure your project exceeds expectations.</div>
+			<a href="#get-free-quote" class="btn btn-orange open__modal">Get a Free Quote</a>
+			<div class="note">or call us at (915) 201-4217 for a free quote  </div>
+			<div class="image"><img src="img/free_help.png" alt="title"></div>
+		</div>
+	</section>

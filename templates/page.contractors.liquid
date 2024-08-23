@@ -1,0 +1,44 @@
+<section id="promo__page" class="promo__contacts page__ho">
+		<div class="container">
+			<h1>Let Us Help You Grow Your Artificial Turf Business!</h1>
+			<div class="bt__note"><u>Join our Certified Installer Program</u> and let us help you <u>get more jobs</u>, <u>unlock the best prices on artificial grass</u>, and <u>boost your profits!</u></div>
+			<ul>
+				<li>The Best Price on Turf</li>
+				<li>Marketing & Sales Support</li>
+				<li>Fast Local Delivery</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="page__thanks" class="page__contractors">
+		<div class="container flex">
+			<div class="data">
+				<div class="video">
+					<img src="{{ 'videoh.jpg' |  asset_url }}" alt="title">
+					<div class="logo"></div>
+					<a href="https://www.youtube.com/watch?v=XHTrLYShBRQ&ab_channel=Apple" class="play" data-fancybox="video"><span></span></a>
+				</div>
+				<div class="quote">
+					<img src="{{ 'stars.svg' |  asset_url }}" alt="rating">
+					<p>The team's expertise and dedication to customer satisfaction are truly unmatched, making them an essential partner in my success as a contractor. - <strong>Robert Johnson</strong></p>
+				</div>
+			</div>
+			<div class="form">
+				{% form 'contact' %}
+					{{ form.errors | default_errors }}
+					<h1 style="color: white; width: 100%; text-align:center; margin-bottom: 20px; font-size: 23px;">Join The Certified Installer Program Today!</h1>
+					<input type="text" name="contact[first_name]" id="first-name" placeholder="First Name">
+					<input type="text" name="contact[last_name]" id="last-name" placeholder="Last Name">
+					<input type="email" name="contact[email]" id="email" required placeholder="Email">
+                    <input type="tel" name="contact[phone]" id="phone" placeholder="Phone Number">
+					<input type="text" name="contact[company_name]" id="company-name" placeholder="Company Name">
+					<input class="btn btn-orange" type="submit" value="Join Now" />
+				{% endform %}
+			</div>
+		</div>
+	</section>
+    <style>
+        footer{
+            padding-top: 60px;
+        }
+    </style>

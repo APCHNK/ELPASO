@@ -1,0 +1,67 @@
+<header>
+	<div class="top">
+		<div class="container flex">
+			<div class="info flex">
+				<p class="delivery" style="background: url({{ 'delivery.svg' |  asset_url }}) 0 50% no-repeat;">Fast Local Delivery</p>
+				<p class="money" style="background: url({{ 'money.svg' |  asset_url }}) 0 50% no-repeat;">Financing Options Available!</p>
+				<p class="address" style="background: url({{  'line.svg' |  asset_url }}) 0 50% no-repeat;">11220 Rojas Dr Suite A2, El Paso, TX 79935</p>
+			</div>
+			<div class="data flex">
+				<div class="phone">Call <a href="tel:9152014217" style="background: url({{"phone.svg" |  asset_url}}) 0 50% no-repeat;">(915) 201-4217</a></div>
+				<div class="account" style="background: url({{  'line.svg' |  asset_url }}) 0 50% no-repeat;"><a href="#" style="background: url({{"account.svg" |  asset_url }}) 50% 50% no-repeat;"></a></div>
+				<div class="cart"><a href="/cart" style="background: url({{"cart.svg" |  asset_url}}) 50% 50% no-repeat;"><span>{{ cart.item_count }}</span></a></div>
+			</div>
+		</div>
+	</div>
+	<div class="container flex bot">
+		<div class="logo"><a href="/"><img src="{{ 'logo.svg' |  asset_url }}" alt="logo"></a></div>
+		<nav class="flex">
+			<ul class="main__nav">
+				<li class="has-children">
+					<a href="/collections">Products</a>
+					<ul class="sub-menu">
+						{% for collection in collections %}
+							<li>
+								<a href="{{ collection.url }}">{{ collection.metafields.custom.icon_in_header }}{{ collection.title }}</a>
+								{% comment %} <ul class="sub-menu">
+									{% for product in collection.products limit: 4 %}
+										<li><a href="{{ product.url }}">{{ product.title }}</a></li>
+									{% endfor %}
+								</ul> {% endcomment %}
+							</li>
+						{% endfor %}
+					</ul>
+				</li>
+				<li><a href="/pages/contractors">Contractors</a></li>
+				<li><a href="/pages/homeowners">Homeowners</a></li>
+				<li><a href="/pages/installations">Installation</a></li>
+				<li><a href="/pages/success">Success Stories</a></li>
+				<li class="has-children item-blog">
+					<a href="/pages/about">About</a>
+					<ul class="sub-menu">
+						<li><a href="/blogs/news">Blog</a></li>
+						{% comment %} <li><a href="/pages/faq">FAQ</a></li> {% endcomment %}
+						<li><a href="/pages/contact">Contact</a></li>
+					</ul>
+				</li>
+			</ul>
+			<a href="#get-free-quote" class="btn btn-orange open__modal">Get a Free Quote</a>
+			<div class="pull"></div>
+		</nav>
+	</div>
+	<style>
+		header nav li.has-children:after {background: url({{"arr.svg" |  asset_url}}) 50% 50% no-repeat;}
+		header .delivery{padding: 0 0 0 32px; background: url({{"delivery.svg" |  asset_url}}) 0 50% no-repeat; margin-right: 16px}
+		header .money{padding: 0 0 0 32px; background: url({{"money.svg" |  asset_url}}) 0 50% no-repeat;}
+		header .address{margin-left: 14px; padding-left: 15px; background: url({{"line.svg" |  asset_url}}) 0 50% no-repeat;}
+		header .phone a{display: inline-block; color: #fff; line-height: 28px; padding: 0 0 0 34px; margin-left: 8px; background: url({{"phone.svg" |  asset_url}}) 0 50% no-repeat;}
+		header .account{padding-left: 24px; margin-left: 24px; background: url({{"line.svg" |  asset_url}}) 0 50% no-repeat;}
+		header .account a{display: block; background: url({{"account.svg" |  asset_url}}) 50% 50% no-repeat; width: 24px; height: 24px}
+		header .cart a{position: relative; display: block; width: 24px; height: 24px; background: url({{"cart.svg" |  asset_url}}) 50% 50% no-repeat;}
+		header nav li.has-children:after{position: absolute; top: calc(50% - 12px); right: 0; width: 24px; height: 24px; background: url({{"arr.svg" |  asset_url}}) 50% 50% no-repeat; transition: all 0.3s; content: ''}
+		@media screen and (max-width: 767px){
+			header .pull{display: block; width: 24px; height: 24px; background: url({{"pull.svg" |  asset_url}}) 50% 50% no-repeat; margin-left: 20px}
+			header .pull.open{background: url({{"close.svg" |  asset_url}}) 50% 50% no-repeat;}
+		}
+	</style>
+</header>
